@@ -40,7 +40,7 @@ export function App() {
       return;
     }
 
-    console.log({ weightNumber, heightNumber });
+    //console.log({ weightNumber, heightNumber });
 
     // handle invalid numbers
     if (weightNumber < 2 || weightNumber > 500) {
@@ -66,6 +66,12 @@ export function App() {
     });
 
     // clear form
+    e.currentTarget.reset();
+  }
+
+  function handleClickReset(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    setIMCData(null);
   }
 
   return (
@@ -74,13 +80,31 @@ export function App() {
         <form onSubmit={handleSubmit}>
           <div>
             <Label htmlFor="weight">Peso (kg)</Label>
-            <Input type="text" id="weight" name="weight" className="mt-1" />
+            <Input
+              disabled={!!IMCData}
+              type="text"
+              id="weight"
+              name="weight"
+              className="mt-1"
+            />
           </div>
           <div className="mt-4">
             <Label htmlFor="height">Altura (cm)</Label>
-            <Input type="text" id="height" name="height" className="mt-1" />
+            <Input
+              disabled={!!IMCData}
+              type="text"
+              id="height"
+              name="height"
+              className="mt-1"
+            />
           </div>
-          <Button type="submit">Calcular</Button>
+          {IMCData ? (
+            <Button onClick={handleClickReset} type="button">
+              Refazer
+            </Button>
+          ) : (
+            <Button type="submit">Calcular</Button>
+          )}
         </form>
       </section>
       <section id="result" className="py-10 px-4 h-40">
