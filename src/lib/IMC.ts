@@ -4,7 +4,7 @@ export function calculateIMC(weight: number, height: number): number {
 
 export function IMCResult(imc: number): string {
     if (imc < 17) {
-        return "Muito aaixo do peso";
+        return "Muito abaixo do peso";
     } else if (imc < 18.5) {
         return "Abaixo do peso";
     } else if (imc < 24.9) {

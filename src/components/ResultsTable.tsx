@@ -6,7 +6,7 @@ export function ResultsTable({
   IMCData: { weight: number; height: number; IMC: number; IMCResult: string };
 }) {
   return (
-    <table className="text-center text-xs md:text-base md:[&>tbody>tr>td]:p-2 md:[&>tbody>tr>td]:px-4 [&>tbody>tr>td]:px-2 text-neutral-600 mx-auto">
+    <table className="text-center text-xs md:text-base md:[&>tbody>tr>td]:p-2 md:[&>tbody>tr>td]:px-4 [&>tbody>tr>td]:px-2 text-neutral-600 dark:text-neutral-50 mx-auto">
       <tbody>
         <tr className="font-bold border-b border-b-rose-400">
           <td>Peso</td>
