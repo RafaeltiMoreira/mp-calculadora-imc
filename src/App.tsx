@@ -111,7 +111,7 @@ export function App() {
       <button
         type="button"
         onClick={handleThemeSwitch}
-        className="fixed z-10 right-2 top-2 bg-zinc-100 dark:bg-gray-400 text-lg p-3 rounded-full"
+        className="fixed z-10 right-2 top-2 bg-zinc-300 dark:bg-gray-400 text-lg p-3 rounded-full"
         title="Alternar tema do site"
       >
         {theme === "dark" ? "🌛" : "🌞"}
