@@ -6,6 +6,7 @@ import { ReferenceTable } from "./components/ReferenceTable";
 import { IMCResult, calculateIMC } from "./lib/IMC";
 import { ResultsTable } from "./components/ResultsTable";
 import { Toaster, toast } from "sonner";
+import { MdDarkMode, MdOutlineLightMode } from "react-icons/md";
 
 export function App() {
   const [theme, setTheme] = useState<"dark" | "light" | null>(null);
@@ -74,33 +75,30 @@ export function App() {
       toast.error(
         "O peso informado precisa ser maior que 2kg e menor que 500kg."
       );
-    }
-
-    if (heightNumber < 0.5 || heightNumber > 2.5) {
+    } else if (heightNumber < 0.5 || heightNumber > 2.5) {
       //alert("A altura informada precisa ser maior que 50cm e menor que 2,5m.");
       toast.error(
         "A altura informada precisa ser maior que 50cm e menor que 2,5m."
       );
+    } else {
+      // calc IMC
+      const IMC = calculateIMC(weightNumber, heightNumber);
+      const IMCResultCalc = IMCResult(IMC);
+      console.log(IMC);
+      console.log(IMCResultCalc);
+
+      // set result
+      setIMCData({
+        weight: weightNumber,
+        height: heightNumber,
+        IMC: IMC,
+        IMCResult: IMCResultCalc,
+      });
+
+      // clear form
+      e.currentTarget.reset();
     }
-
-    // calc IMC
-    const IMC = calculateIMC(weightNumber, heightNumber);
-    const IMCResultCalc = IMCResult(IMC);
-    console.log(IMC);
-    console.log(IMCResultCalc);
-
-    // set result
-    setIMCData({
-      weight: weightNumber,
-      height: heightNumber,
-      IMC: IMC,
-      IMCResult: IMCResultCalc,
-    });
-
-    // clear form
-    e.currentTarget.reset();
   }
-
   function handleClickReset(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     setIMCData(null);
@@ -111,10 +109,16 @@ export function App() {
       <button
         type="button"
         onClick={handleThemeSwitch}
-        className="fixed z-10 right-2 top-2 bg-zinc-300 dark:bg-gray-400 text-lg p-3 rounded-full"
-        title="Alternar tema do site"
+        className="fixed z-10 right-2 top-2 bg-white dark:bg-rose-500 text-lg p-3 rounded-full"
+        title={
+          theme === "dark" ? "Desativar modo Dark" : "Desativar modo Light"
+        }
       >
-        {theme === "dark" ? "🌛" : "🌞"}
+        {theme === "dark" ? (
+          <MdDarkMode className="dark:text-white" />
+        ) : (
+          <MdOutlineLightMode className="text-rose-500" />
+        )}
       </button>
       <Toaster richColors closeButton />
       <main className="bg-white dark:bg-gray-600 max-w-4xl mx-auto md:py-24 md:px-48 px-5 py-28">

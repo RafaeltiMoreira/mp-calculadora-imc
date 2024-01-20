@@ -6,7 +6,7 @@ export function Button({
 }: ButtonHTMLAttributes<HTMLButtonElement> & { children: React.ReactNode }) {
   return (
     <button
-      className="mt-6 bg-rose-400 opacity-95 hover:opacity-100 text-white font-bold w-full rounded p-3"
+      className="mt-6 bg-rose-500 opacity-95 hover:opacity-100 text-white font-bold w-full rounded p-3"
       {...props}
     >
       {children}
