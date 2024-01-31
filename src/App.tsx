@@ -50,7 +50,6 @@ export function App() {
     // handle empty fields
     const { weight, height } = data;
     if (!weight || !height) {
-      //alert("Ops... você precisa preencher todos os campos.");
       toast.error("Ops... você precisa preencher todos os campos.");
       return;
     }
@@ -60,7 +59,6 @@ export function App() {
     const heightNumber = parseFloat(height.replace(",", ".")) / 100;
 
     if (isNaN(weightNumber) || isNaN(heightNumber)) {
-      //alert("Ops... você precisa preencher os campos com números válidos.");
       toast.error(
         "Ops... você precisa preencher os campos com números válidos."
       );
@@ -71,12 +69,10 @@ export function App() {
 
     // handle invalid numbers
     if (weightNumber < 2 || weightNumber > 500) {
-      //alert("O peso informado precisa ser maior que 2kg e menor que 500kg.");
       toast.error(
         "O peso informado precisa ser maior que 2kg e menor que 500kg."
       );
     } else if (heightNumber < 0.5 || heightNumber > 2.5) {
-      //alert("A altura informada precisa ser maior que 50cm e menor que 2,5m.");
       toast.error(
         "A altura informada precisa ser maior que 50cm e menor que 2,5m."
       );
@@ -132,6 +128,7 @@ export function App() {
                 id="weight"
                 name="weight"
                 className="mt-1"
+                placeholder="Ex.: 80"
               />
             </div>
             <div className="mt-4">
@@ -142,6 +139,7 @@ export function App() {
                 id="height"
                 name="height"
                 className="mt-1"
+                placeholder="Ex.: 180"
               />
             </div>
             {IMCData ? (
